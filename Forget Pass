@@ -1,0 +1,40 @@
+import java.util.Random;
+import java.util.Scanner;
+
+public class ForgetPassword {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter your username: ");
+        String username = scanner.nextLine();
+
+        System.out.print("Enter your phone number: ");
+        String phoneNumber = scanner.nextLine();
+
+        int code = generateCode();
+        System.out.println("You have received a 4-digit code on your phone.");
+
+        System.out.println("[DEBUG] Your code is: " + code);
+
+        System.out.print("Enter the 4-digit code: ");
+        int enteredCode = scanner.nextInt();
+        scanner.nextLine(); 
+
+        if (enteredCode == code) {
+            System.out.print("Enter your new password: ");
+            String newPassword = scanner.nextLine();
+            System.out.println("Password updated successfully!");
+        } else {
+            System.out.println("Incorrect code. Password reset failed.");
+        }
+
+        scanner.close();
+    }
+
+    // Method to generate a random 4-digit code (This part Is from Google)
+    public static int generateCode() {
+        Random random = new Random();
+        return 1000 + random.nextInt(9000); // Generates a number between 1000 and 9999
+    }
+}
